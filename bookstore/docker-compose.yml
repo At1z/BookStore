@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: book-store-db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: bookstore
+      POSTGRES_USER: bookstore
+      POSTGRES_PASSWORD: bookstore
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - bookstore-network
+
+
+networks:
+  bookstore-network:
+    driver: bridge
+
+volumes:
+  pgdata:
